@@ -1,0 +1,13 @@
+#!/usr/bin/env python
+"""
+Simple utility for dumping a sqlite3 database to ASCII format.
+"""
+import sqlite3
+import sys
+from sys import stdout
+
+db = sqlite3.connect(sys.argv[1])
+
+for line in db.iterdump():
+    stdout.write(line+'\n')
+

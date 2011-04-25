@@ -1,0 +1,6 @@
+# Fill in your own host_id and root_ns
+# from dropbox configuration
+
+host_id='<host_id>'
+root_ns=<root_ns>
+
