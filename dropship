@@ -50,7 +50,10 @@ if __name__ == '__main__':
     else:
         path = None        
     
-    f = open(infile, 'r')
+    if infile == '-':
+        f = sys.stdin
+    else:
+        f = open(infile, 'r')
     try:
         indata = json.load(f)
     except ValueError,e:
