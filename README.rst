@@ -18,7 +18,7 @@ This package includes:
 
 How does it work?
 ------------------
-Dropbox its deduplication scheme works by breaking files into blocks. 
+The deduplication scheme used by Dropbox works by breaking files into blocks.
 Each of these blocks is hashed with the SHA256__
 algorithm and represented by the digest. Only blocks that are not yet
 known are uploaded to the server when syncing.
