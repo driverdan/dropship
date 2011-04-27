@@ -40,13 +40,14 @@ if __name__ == "__main__":
     f = open(filename, "rb")
     barray = []
     
+    size = 0
     while True:
         data = f.read(BLOCKSIZE)
         if not data:
             break
+        size += len(data)
         barray.append(hashlib.sha256(data).hexdigest())
         
-    size = f.tell()
     stat = os.stat(filename)
         
     outdata = {
