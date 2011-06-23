@@ -37,24 +37,40 @@ if __name__ == "__main__":
     except IndexError:
         err.write("Usage: %s <file>\n" % sys.argv[0])
         exit(1)
-    f = open(filename, "rb")
+        
+    if filename == '-':
+        f = sys.stdin
+    else:
+        f = open(filename, "rb")
     barray = []
     
+    size = 0
+    hash = hashlib.sha256()
     while True:
         data = f.read(BLOCKSIZE)
         if not data:
             break
+        size += len(data)
+        hash.update(data)
         barray.append(hashlib.sha256(data).hexdigest())
-        
-    size = f.tell()
-    stat = os.stat(filename)
         
     outdata = {
         "blocks":barray,
         "size":size,
-        "name":path.basename(filename),
-        "mtime":stat.st_mtime,
     }
+    if filename == '-':
+        import time;
+        outdata.update({
+            "name":hash.hexdigest()+".dat",
+            "mtime":time.mktime(time.localtime()),
+        })
+    else:
+        stat = os.stat(filename)
+        outdata.update({
+            "name":path.basename(filename),
+            "mtime":stat.st_mtime,
+        })
+        
     outdata = json.dumps(outdata) + '\n'
     
     out.write(outdata)
