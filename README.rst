@@ -1,5 +1,7 @@
 dropship - Dropbox API utilities
 ============================================================
+Dropbox changed the way they dedupe a while ago and this project no longer works.
+---------------------------------------------------------------------------------
 
 These utilities make use of the deduplication scheme of Dropbox__
 to allow for "teleporting" files into your Dropbox account
